@@ -36,5 +36,27 @@ Reset the filter
     
     Reset the filter
     
+Select Java from All Job Categories Drop Down
+    
+    Select Java from drop down
+
+Verify the results for Java
+    
+    Verify the results for Java
+    
+Reset the filter
+    
+    Reset the filter
+
+Navigate to Home Page
+    
+    Navigate to Home Page
+    
+Close the Browser
+    
+    Close the Browser
+
+    
+    
     
 	
