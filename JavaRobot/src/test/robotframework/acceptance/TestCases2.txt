@@ -1,0 +1,29 @@
+*** Settings ***
+Documentation  A resource file containing the application specific keywords
+Library  Selenium2Library
+Library  com.crossover.robotframework.JavaRobot.SampleKeywords
+Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
+
+*** Variables ***
+${URL} =  https://www.crossover.com
+${BROWSER}=  chrome
+${SEARCHTEXT}=  chief
+
+
+*** Test Cases ***
+
+Launch Crossover Website
+
+	Launch Crossover Website  ${URL}  ${BROWSER}
+	Maximize Browser
+	
+Navigate to Available Jobs
+
+	Navigate to For Candidates
+	Navigate to Available Jobs
+	
+Search for Chief Jobs
+	
+	Focus on Job Title
+	Enter search text In Job Title  ${SEARCHTEXT}
+	
