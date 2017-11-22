@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 public class KeywordImplementations {
 	
 	static WebDriver driver;
-	CrossoverLandingPage objcrossoverlandingpage;
+	CrossoverLandingPage objcrossoverlandingpage = new CrossoverLandingPage(driver);
 	
 	
 	@RobotKeyword("Launch Crossover Website")
@@ -40,7 +40,7 @@ public class KeywordImplementations {
 	@RobotKeyword("Navigate to For Candidates")
 	
 	public void NavigateToForCandidates() {
-		objcrossoverlandingpage = new CrossoverLandingPage(driver);
+		//objcrossoverlandingpage = new CrossoverLandingPage(driver);
 		objcrossoverlandingpage.navigateToForCandidates();
 	 
 	}
@@ -61,15 +61,37 @@ Click Search Jobs*/
 public void FocusOnJobTitle() {
 	objcrossoverlandingpage.FocusOnJobTitle();
  
-}
+	}
 
 @RobotKeyword("Enter search text In Job Title")
 @ArgumentNames({"SEARCHTEXT"})
 
-public void EnterSearchTextInJobTitle(String searchText) {
-	objcrossoverlandingpage.EnterChiefInJobTitle(searchText);
- 
-}
-
+public void EnterSearchTextInJobTitle(String SEARCHTEXT) {
 	
+	objcrossoverlandingpage.EnterChiefInJobTitle(SEARCHTEXT);
+	
+	
+	}
+
+@RobotKeyword("Click Search Jobs")
+
+public void ClickSearchJobs() {
+	objcrossoverlandingpage.ClickSearchJobs();
+ 
+	}
+
+@RobotKeyword("Verify the results")
+
+public void Verifytheresults() {
+	objcrossoverlandingpage.Verifytheresults();
+ 
+	}
+
+@RobotKeyword("Reset the filter")
+
+public void Resetthefilter() {
+	objcrossoverlandingpage.ClickReset();
+ 
+	}
+
 }

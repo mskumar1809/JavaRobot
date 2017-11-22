@@ -22,8 +22,19 @@ Navigate to Available Jobs
 	Navigate to For Candidates
 	Navigate to Available Jobs
 	
-Search for Chief Jobs
-	
+Search Jobs with Given Text
+    
 	Focus on Job Title
 	Enter search text In Job Title  ${SEARCHTEXT}
+	Click Search Jobs
+
+Verify the Job Results for Searched Text
+    
+    Verify the results
+ 
+Reset the filter
+    
+    Reset the filter
+    
+    
 	
