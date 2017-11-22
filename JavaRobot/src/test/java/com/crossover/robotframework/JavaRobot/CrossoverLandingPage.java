@@ -1,4 +1,7 @@
 package com.crossover.robotframework.JavaRobot;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,8 +21,12 @@ public class CrossoverLandingPage {
  
 	By AvailableJobs = By.xpath("//*[@class='title-desc-wrapper over-image has-main-image']/div[2]/div[2]/p[2]/a");
 	
-	By JobTitle = By.xpath("//*[@id='available-jobs']/div[2]/form/div/div[1]/div/input");
+	By JobTitle = 	By.xpath("//*[@id='available-jobs']/div[2]/form/div/div[1]/div/input");
   
+	By SearchJobs = By.xpath("//*[@id='available-jobs']/div[2]/form/div/div[3]/button");
+	
+	By Reset = By.xpath("//button[@ng-click='filterReset()']");
+	
 	public CrossoverLandingPage(WebDriver driver)
  
 	{
@@ -27,27 +34,51 @@ public class CrossoverLandingPage {
 		this.driver = driver;
 	}
 	
-	
+	@Test
 	public void navigateToForCandidates () {
 		driver.findElement(ForCandidates).click();
 		Assert.assertTrue(driver.getCurrentUrl().contains("candidates"));
 	}
 	
-
+	@Test
 	public void navigateToAvailableJobs() {
 		driver.findElement(AvailableJobs).click();
 		Assert.assertTrue(driver.getCurrentUrl().contains("available-jobs"));
 		
 	}
 	
+	@Test
 	public void FocusOnJobTitle() {
 		driver.findElement(JobTitle).click();
 		Assert.assertTrue(driver.findElement(JobTitle).isEnabled());
 		
 	}
+	@Test
+	public void EnterChiefInJobTitle(String SEARCHTEXT) {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(JobTitle).sendKeys(SEARCHTEXT);
+	}
 	
-	public void EnterChiefInJobTitle(String searchText) {
-		driver.findElement(JobTitle).sendKeys(searchText);
+	@Test
+	public void ClickSearchJobs() {
+		driver.findElement(SearchJobs).click();
+
+	}
+	
+	@Test
+	public void Verifytheresults() {
+		  WebElement Jobs = driver.findElement(By.xpath(".//*[@class='jobs-list-shadow']"));
+		  
+		  List<WebElement> jobs = Jobs.findElements(By.tagName("a"));
+		  
+		   System.out.println(jobs.get(1).getText());
+		   Assert.assertTrue(jobs.get(1).getText().contains("Sampath"));
+		}
+	
+	
+	@Test
+	public void ClickReset() {
+		driver.findElement(Reset).click();
 
 	}
 }
