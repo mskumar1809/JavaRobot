@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.robotframework.javalib.annotation.ArgumentNames;
 import org.robotframework.javalib.annotation.RobotKeyword;
 import org.robotframework.javalib.annotation.RobotKeywords;
@@ -28,6 +29,7 @@ public class KeywordImplementations {
     @ArgumentNames({"URL", "Browser"})
 	public void LaunchCrossoverWebsite(String url, String Browser) {
 		driver = new ChromeDriver();
+		WebDriverWait wait = new WebDriverWait(driver, 20);
 		driver.get(url);	
 		Assert.assertTrue(driver.getCurrentUrl().contains(url));		
 	}
@@ -52,9 +54,7 @@ public class KeywordImplementations {
 	 
 	}
 
-/*Focus on Job Title
-Type Chief in Job Title
-Click Search Jobs*/
+
 
 @RobotKeyword("Focus on Job Title")
 
@@ -81,9 +81,15 @@ public void ClickSearchJobs() {
 	}
 
 @RobotKeyword("Verify the results")
+@ArgumentNames({"SEARCHTEXT"})
 
-public void Verifytheresults() {
-	objcrossoverlandingpage.Verifytheresults();
+public void Verifytheresults(String SEARCHTEXT) {
+	try {
+		objcrossoverlandingpage.Verifytheresults(SEARCHTEXT);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
  
 	}
 

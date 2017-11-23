@@ -8,6 +8,7 @@ Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
 ${URL} =  https://www.crossover.com
 ${BROWSER}=  chrome
 ${SEARCHTEXT}=  chief
+${CATEGORY}=  java
 
 
 *** Test Cases ***
@@ -30,7 +31,7 @@ Search Jobs with Given Text
 
 Verify the Job Results for Searched Text
     
-    Verify the results
+    Verify the results  ${SEARCHTEXT}
  
 Reset the filter
     
@@ -42,7 +43,7 @@ Select Java from All Job Categories Drop Down
 
 Verify the results for Java
     
-    Verify the results
+    Verify the results  ${CATEGORY}
     
 Reset the filter
     
