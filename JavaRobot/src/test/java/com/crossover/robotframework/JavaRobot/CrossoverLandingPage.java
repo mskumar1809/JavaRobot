@@ -1,8 +1,10 @@
 package com.crossover.robotframework.JavaRobot;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
@@ -73,14 +75,29 @@ public class CrossoverLandingPage {
 	}
 	
 	@Test
-	public void Verifytheresults() {
-		  WebElement Jobs = driver.findElement(By.xpath(".//*[@class='jobs-list-shadow']"));
+	public void Verifytheresults(String SEARCHTEXT) throws InterruptedException   {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		// Scroll inside web element vertically (e.g. 100 pixel)
+		   js.executeScript("arguments[0].scrollTop = arguments[1];",driver.findElement(By.xpath(".//*[@id='available-jobs']/div[3]/div[2]/div")), 11000);
+	
+		   Thread.sleep(5000);
 		  
-		  List<WebElement> jobs = Jobs.findElements(By.tagName("a"));
+		  List<WebElement> table = driver.findElements(By.xpath("//div[@class='cell title ng-binding']"));
 		  
-		   System.out.println(jobs.get(1).getText());
-		   Assert.assertTrue(jobs.get(1).getText().contains("Sampath"));
+		   java.util.Iterator<WebElement> i = table.iterator();
+		   
+		   while(i.hasNext()) {
+			 
+		       WebElement row = i.next();
+		       
+		       if (row.getText() != null && row.getText().toString().length() > 0) {
+		    	   String rowText = row.getText().toString();
+		    	   System.out.println(row.getText().toString());
+		    	   Assert.assertTrue(rowText.toLowerCase().contains(SEARCHTEXT));
+		       }
 		}
+	}
 	
 	@Test
 	public void ClickReset() {
