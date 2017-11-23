@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation  A resource file containing the application specific keywords
 Library  Selenium2Library
-Library  com.crossover.robotframework.JavaRobot.SampleKeywords
 Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
 
 *** Variables ***
