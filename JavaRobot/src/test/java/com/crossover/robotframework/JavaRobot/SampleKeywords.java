@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
  
 public class SampleKeywords {
+	
 	@Test
 	public void verifySearch() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver","C:\\bin\\chromedriver.exe");
@@ -19,7 +20,6 @@ public class SampleKeywords {
 		   Thread.sleep(10000);
 		   //driver.findElement(By.xpath(".//*[@id='available-jobs']/div[3]/div[2]/div")).click();
 		   
-		  /* List Implementation
 		   List<WebElement> table = driver.findElements(By.xpath("//div[@class='cell title ng-binding']"));
 		   List<String> jobText = new ArrayList<String>();
 		   java.util.Iterator<WebElement> i = table.iterator();
@@ -28,10 +28,7 @@ public class SampleKeywords {
 		       jobText.add(row.getText().toString());
 		     
 		}
-		   System.out.println(jobText); */
-		// drop down implementation
-		   driver.findElement(By.xpath("//span[contains(.,'All Job Categories')]")).click();
-		   driver.findElement(By.xpath("//span[contains(.,'Java')]")).click();
+		   System.out.println(jobText);
 	}
 	
 }
