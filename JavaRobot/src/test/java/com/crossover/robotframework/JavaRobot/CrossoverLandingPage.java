@@ -27,6 +27,12 @@ public class CrossoverLandingPage {
 	
 	By Reset = By.xpath("//button[@ng-click='filterReset()']");
 	
+	By JobCategories = By.xpath("//span[contains(.,'All Job Categories')]"); 
+	
+	By Java = By.xpath("//span[contains(.,'Java')]"); 
+	
+	By Icon = By.xpath("html/body/div[2]/div[1]/div/header/nav/div/h1/a/div");
+	
 	public CrossoverLandingPage(WebDriver driver)
  
 	{
@@ -61,6 +67,7 @@ public class CrossoverLandingPage {
 	
 	@Test
 	public void ClickSearchJobs() {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(SearchJobs).click();
 
 	}
@@ -75,12 +82,34 @@ public class CrossoverLandingPage {
 		   Assert.assertTrue(jobs.get(1).getText().contains("Sampath"));
 		}
 	
-	
 	@Test
 	public void ClickReset() {
 		driver.findElement(Reset).click();
 
 	}
+	
+	@Test
+	public void SelectJavafromJobCategories() {
+		
+		driver.findElement(JobCategories).click();
+		driver.findElement(Java).click();
+
+	}
+	
+	@Test
+	public void NavigateToHomePage() {
+		
+		driver.findElement(Icon).click();
+		
+	}
+
+	@Test
+	public void CloseTheBrowser() {
+		
+		driver.quit();
+		
+	}
+	
 }
 
 

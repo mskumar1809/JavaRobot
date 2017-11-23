@@ -94,4 +94,23 @@ public void Resetthefilter() {
  
 	}
 
+@RobotKeyword("Select Java from Job Categories")
+
+public void SelectJavafromJobCategories() {
+	objcrossoverlandingpage.SelectJavafromJobCategories();
+ 
+	}
+
+@RobotKeyword("Navigate to Home Page")
+public void NavigateToHomePage() {
+	objcrossoverlandingpage.NavigateToHomePage();
+ 
+	}
+
+@RobotKeyword("Close the Browser")
+public void CloseTheBrowser() {
+	objcrossoverlandingpage.CloseTheBrowser();
+ 
+	}
+
 }

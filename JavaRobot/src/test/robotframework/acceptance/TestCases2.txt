@@ -38,11 +38,11 @@ Reset the filter
     
 Select Java from All Job Categories Drop Down
     
-    Select Java from drop down
+    Select Java from Job Categories
 
 Verify the results for Java
     
-    Verify the results for Java
+    Verify the results
     
 Reset the filter
     
