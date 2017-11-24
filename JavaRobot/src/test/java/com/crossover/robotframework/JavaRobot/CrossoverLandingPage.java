@@ -1,17 +1,10 @@
 package com.crossover.robotframework.JavaRobot;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.WebElement;
- 
-import org.openqa.selenium.support.FindBy;
- 
-import org.openqa.selenium.support.How;
 import org.testng.Assert;
 import org.testng.annotations.Test;
  
@@ -34,6 +27,8 @@ public class CrossoverLandingPage {
 	By Java = By.xpath("//span[contains(.,'Java')]"); 
 	
 	By Icon = By.xpath("html/body/div[2]/div[1]/div/header/nav/div/h1/a/div");
+	
+	By Login = By.xpath("html/body/div[2]/div[1]/div/header/nav/div/div[3]/ul/li[1]/a");
 	
 	public CrossoverLandingPage(WebDriver driver)
  
@@ -65,13 +60,16 @@ public class CrossoverLandingPage {
 	public void EnterChiefInJobTitle(String SEARCHTEXT) {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(JobTitle).sendKeys(SEARCHTEXT);
+		String text = driver.findElement(JobTitle).getAttribute("value");
+		Assert.assertTrue(text.equals(SEARCHTEXT));
 	}
 	
 	@Test
 	public void ClickSearchJobs() {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(SearchJobs).click();
-
+		Assert.assertTrue(driver.findElement(Reset).isDisplayed());
+	
 	}
 	
 	@Test
@@ -100,9 +98,9 @@ public class CrossoverLandingPage {
 	}
 	
 	@Test
-	public void ClickReset() {
+	public void ClickReset()  {
 		driver.findElement(Reset).click();
-
+		Assert.assertTrue(driver.findElements(Reset).size() == 0);
 	}
 	
 	@Test
@@ -110,6 +108,7 @@ public class CrossoverLandingPage {
 		
 		driver.findElement(JobCategories).click();
 		driver.findElement(Java).click();
+		Assert.assertTrue(driver.findElement(Reset).isDisplayed());
 
 	}
 	
@@ -117,7 +116,7 @@ public class CrossoverLandingPage {
 	public void NavigateToHomePage() {
 		
 		driver.findElement(Icon).click();
-		
+		Assert.assertTrue(driver.findElement(Login).isDisplayed());
 	}
 
 	@Test
