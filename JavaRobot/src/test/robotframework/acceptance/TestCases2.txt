@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation  A resource file containing the application specific keywords
+Documentation  Automated Test Cases to implement Robot Framework with Java, Maven, Selenium & TestNg
 Library  Selenium2Library
 Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
 
