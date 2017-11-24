@@ -10,25 +10,26 @@ import org.testng.Assert;
 @RobotKeywords
 public class KeywordImplementations {
 
-	static WebDriver driver;
-	CrossoverPageObjects objcrossoverlandingpage = new CrossoverPageObjects(driver);
+	CrossoverPageObjects objcrossoverlandingpage = CrossoverPageObjects.getInstance();
 
+	/***
+	 * 
+	 * Methods for Implementation of the Custom Keywords defined in RobotFramework
+	 *  
+	 */
 	@RobotKeyword("Launch Crossover Website")
 	@ArgumentNames({ "URL", "Browser" })
 	public void launchCrossoverWebsite(String url, String Browser) {
-		driver = new ChromeDriver();
-		driver.get(url);
-		Assert.assertTrue(driver.getCurrentUrl().contains(url));
+		objcrossoverlandingpage.launchBrowser(url, Browser);
 	}
 
 	@RobotKeyword("Maximize Browser")
 	public void maximizeBrowser() {
-		driver.manage().window().maximize();
+		// driver.manage().window().maximize();
 	}
 
 	@RobotKeyword("Navigate to For Candidates")
 	public void navigateToForCandidates() {
-		// objcrossoverlandingpage = new CrossoverLandingPage(driver);
 		objcrossoverlandingpage.navigateToForCandidates();
 	}
 
