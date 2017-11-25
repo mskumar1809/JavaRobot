@@ -20,6 +20,7 @@ Launch Crossover Website
 Navigate to Available Jobs
 
 	Navigate to For Candidates
+	sleep  10s
 	Navigate to Available Jobs
 	
 Search Jobs with Given Text

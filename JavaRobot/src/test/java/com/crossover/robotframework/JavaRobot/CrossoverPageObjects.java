@@ -3,17 +3,24 @@ package com.crossover.robotframework.JavaRobot;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Iterator;
 
 public class CrossoverPageObjects {
 
-	private WebDriver driver;
+	private RemoteWebDriver driver;
 
 	/***
 	 * 
@@ -42,16 +49,20 @@ public class CrossoverPageObjects {
 
 	private static CrossoverPageObjects sINSTANCE = null;
 
-	// Singleton pattern
+	// Singleton pattern to avoid creating multiple instances of driver
 	public static CrossoverPageObjects getInstance() {
 		if (sINSTANCE == null) {
 			sINSTANCE = new CrossoverPageObjects();
 		}
 		return sINSTANCE;
 	}
-
+	
 	private CrossoverPageObjects() {
-		this.driver = new ChromeDriver();
+		try {
+			this.driver = new RemoteWebDriver(new URL("http://seleniumnode:4444/wd/hub"), DesiredCapabilities.chrome() );
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -73,6 +84,7 @@ public class CrossoverPageObjects {
 	 */
 
 	public void maximizeBrowser() {
+		driver.manage().timeouts().implicitlyWait(30L, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
@@ -120,7 +132,6 @@ public class CrossoverPageObjects {
 
 	@Test
 	public void enterChiefInJobTitle(String searchText) {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		sendKeys(JOBTITLE, searchText);
 		String text = driver.findElement(JOBTITLE).getAttribute("value");
 		Assert.assertTrue(text.equals(searchText));
@@ -134,7 +145,6 @@ public class CrossoverPageObjects {
 
 	@Test
 	public void clickSearchJobs() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		click(SEARCHJOBS);
 		Assert.assertTrue(driver.findElement(RESET).isDisplayed());
 	}
@@ -225,6 +235,7 @@ public class CrossoverPageObjects {
 	 */
 
 	private void click(By path) {
+		driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
 		if (isVisible(path, true)) {
 			driver.findElement(path).click();
 		}
@@ -239,6 +250,7 @@ public class CrossoverPageObjects {
 	 */
 
 	private void sendKeys(By path, String text) {
+		driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
 		if (isVisible(path, true)) {
 			driver.findElement(path).sendKeys(text);
 		}
@@ -254,6 +266,7 @@ public class CrossoverPageObjects {
 	 */
 
 	private boolean isVisible(By path, boolean throwException) {
+		driver.manage().timeouts().implicitlyWait(5L, TimeUnit.SECONDS);
 		boolean isVisible = driver.findElements(path).size() > 0;
 		if (throwException) {
 			Assert.assertTrue(isVisible);
