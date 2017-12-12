@@ -59,7 +59,9 @@ public class CrossoverPageObjects {
 	
 	private CrossoverPageObjects() {
 		try {
-			this.driver = new RemoteWebDriver(new URL("http://seleniumnode:4444/wd/hub"), DesiredCapabilities.chrome() );
+			URL remoteUrl = new URL("http://172.17.0.1:4444/wd/hub");
+		    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		    driver = new RemoteWebDriver(remoteUrl, capabilities);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
