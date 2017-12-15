@@ -44,6 +44,8 @@ public class CrossoverLandingPage {
 	
 	@Test
 	public void navigateToForCandidates () {
+		WebDriverWait wait = new WebDriverWait(driver,60);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='desktopNav']/nav/div/ul/li[4]/a/span[contains(text(),'For Candidates')]") ));
 		driver.findElement(ForCandidates).click();
 		Assert.assertTrue(driver.getCurrentUrl().contains("candidates"));
 	}
