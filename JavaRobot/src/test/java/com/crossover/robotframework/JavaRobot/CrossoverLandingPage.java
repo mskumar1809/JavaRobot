@@ -44,7 +44,7 @@ public class CrossoverLandingPage {
 	
 	@Test
 	public void navigateToForCandidates () {
-		WebDriverWait wait = new WebDriverWait(driver,0);
+		WebDriverWait wait = new WebDriverWait(driver,30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='desktopNav']/nav/div/ul/li[4]/a/span[contains(text(),'For Candidates')]") ));
 		driver.findElement(ForCandidates).click();
 		Assert.assertTrue(driver.getCurrentUrl().contains("candidates"));
@@ -110,7 +110,10 @@ public class CrossoverLandingPage {
 	@Test
 	public void SelectJavafromJobCategories() {
 		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(JobCategories));
 		driver.findElement(JobCategories).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(Java));
 		driver.findElement(Java).click();
 
 	}
