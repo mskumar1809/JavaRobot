@@ -103,6 +103,8 @@ public class CrossoverLandingPage {
 	
 	@Test
 	public void ClickReset() {
+		WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(Reset));
 		driver.findElement(Reset).click();
 
 	}
