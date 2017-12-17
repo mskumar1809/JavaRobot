@@ -36,7 +36,7 @@ Verify the Results for Selected Value from Drop Down
     And I Navigate to For Candidates
 	And I Navigate to Available Jobs
 	And I Select Java from Job Categories
-	Then I should see the results with searched text  ${SEARCHTEXT}
+	Then I should see the results with searched text  ${CATEGORY}
     
 
 Verify the Navigation to Home Page from Results Page
