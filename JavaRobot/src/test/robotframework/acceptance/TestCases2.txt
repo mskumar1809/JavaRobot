@@ -4,6 +4,9 @@ Library  Selenium2Library
 Library  com.crossover.robotframework.JavaRobot.SampleKeywords
 Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
 
+Test SetUp       Setup
+Test Teardown    Tear Down
+
 *** Variables ***
 ${URL} =  https://www.crossover.com
 ${BROWSER}=  chrome
@@ -11,51 +14,38 @@ ${SEARCHTEXT}=  chief
 ${CATEGORY}=  java
 
 
+
+
 *** Test Cases ***
 
-Launch Crossover Website
+Verify the Results for Free Text Search
 
-	Launch Crossover Website  ${URL}  ${BROWSER}
-	Maximize Browser
-	
-Navigate to Available Jobs
-
-	Navigate to For Candidates
-	Navigate to Available Jobs
-	
-Search Jobs with Given Text
-    
-	Focus on Job Title
-	Enter search text In Job Title  ${SEARCHTEXT}
-	Click Search Jobs
-
-Verify the Job Results for Searched Text
-    
-    Verify the results  ${SEARCHTEXT}
+	Given Launch Crossover Website is launched  ${URL}  ${BROWSER}
+	When I Maximize Browser
+    And I Navigate to For Candidates
+	And I Navigate to Available Jobs
+	And I Focus on Job Title
+	And I Enter search text In Job Title  ${SEARCHTEXT}
+	And I Click Search Jobs
+    Then I should see the results with searched text  ${SEARCHTEXT}
  
-Reset the filter
+Verify the Results for Selected Value from Drop Down
     
-    Reset the filter
+    Given Launch Crossover Website is launched  ${URL}  ${BROWSER}
+	When I Maximize Browser
+    And I Navigate to For Candidates
+	And I Navigate to Available Jobs
+	And I Select Java from Job Categories
+	Then I should see the results with searched text  ${SEARCHTEXT}
     
-Select Java from All Job Categories Drop Down
-    
-    Select Java from Job Categories
 
-Verify the results for Java
+Verify the Navigation to Home Page
     
-    Verify the results  ${CATEGORY}
+    Given I am at Search results screen with Java selection
+    When I Reset the filter
+    And I Navigate to Home Page
+    Then I should be home page
     
-Reset the filter
-    
-    Reset the filter
-
-Navigate to Home Page
-    
-    Navigate to Home Page
-    
-Close the Browser
-    
-    Close the Browser
 
     
     

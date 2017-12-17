@@ -1,4 +1,6 @@
 package com.crossover.robotframework.JavaRobot;
+import static org.testng.Assert.assertTrue;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -79,7 +81,8 @@ public class CrossoverLandingPage {
 	@Test
 	public void Verifytheresults(String SEARCHTEXT) throws InterruptedException   {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-
+		
+		Thread.sleep(5000);
 		// Scroll inside web element vertically (e.g. 100 pixel)
 		   js.executeScript("arguments[0].scrollTop = arguments[1];",driver.findElement(By.xpath(".//*[@id='available-jobs']/div[3]/div[2]/div")), 11000);
 	
@@ -131,6 +134,18 @@ public class CrossoverLandingPage {
 	public void CloseTheBrowser() {
 		
 		driver.quit();
+		
+	}
+
+	@Test
+	public void assertHomePage() {
+		String text = driver.getCurrentUrl();
+		Assert.assertTrue(text.contains("crossover".toLowerCase()));
+		
+	}
+
+	public void resultsScreeninvoke() {
+		driver.get("https://app.crossover.com/x/marketplace/available-jobs?label=14");
 		
 	}
 	

@@ -22,69 +22,72 @@ import org.testng.annotations.Test;
 public class KeywordImplementations {
 	
 	static WebDriver driver;
-	CrossoverLandingPage objcrossoverlandingpage = new CrossoverLandingPage(driver);
+	CrossoverLandingPage objcrossoverlandingpage;
+	
+	@RobotKeyword("Set Up")
+	public void setUp(){
+	 driver = new ChromeDriver();
+	 objcrossoverlandingpage = new CrossoverLandingPage(driver);
+	}
 	
 	
-	@RobotKeyword("Launch Crossover Website")
+	@RobotKeyword("Launch Crossover Website is launched")
     @ArgumentNames({"URL", "Browser"})
-	public void LaunchCrossoverWebsite(String url, String Browser) {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\User1\\Downloads\\chromedriver\\chromedriver.exe");
-		driver = new ChromeDriver();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+	public void LaunchCrossoverWebsiteislaunched(String url, String Browser) {
 		driver.get(url);	
 		Assert.assertTrue(driver.getCurrentUrl().contains(url));		
 	}
 	
-	@RobotKeyword("Maximize Browser")
-	public void MaximizeBrowser() {
+	@RobotKeyword("I Maximize Browser")
+	public void IMaximizeBrowser() {
 		driver.manage().window().maximize();				
 	}
 	
-	@RobotKeyword("Navigate to For Candidates")
+	@RobotKeyword("I Navigate to For Candidates")
 	
-	public void NavigateToForCandidates() {
+	public void INavigateToForCandidates() {
 		//objcrossoverlandingpage = new CrossoverLandingPage(driver);
 		objcrossoverlandingpage.navigateToForCandidates();
 	 
 	}
 	
-@RobotKeyword("Navigate to Available Jobs")
+@RobotKeyword("I Navigate to Available Jobs")
 	
-	public void NavigateToAvailableJobs() {
+	public void INavigateToAvailableJobs() {
 		objcrossoverlandingpage.navigateToAvailableJobs();
 	 
 	}
 
 
 
-@RobotKeyword("Focus on Job Title")
+@RobotKeyword("I Focus on Job Title")
 
-public void FocusOnJobTitle() {
+public void IFocusOnJobTitle() {
 	objcrossoverlandingpage.FocusOnJobTitle();
  
 	}
 
-@RobotKeyword("Enter search text In Job Title")
+@RobotKeyword("I Enter search text In Job Title")
 @ArgumentNames({"SEARCHTEXT"})
 
-public void EnterSearchTextInJobTitle(String SEARCHTEXT) {
+public void IEnterSearchTextInJobTitle(String SEARCHTEXT) {
 	
 	objcrossoverlandingpage.EnterChiefInJobTitle(SEARCHTEXT);
 	
 	
 	}
 
-@RobotKeyword("Click Search Jobs")
+@RobotKeyword("I Click Search Jobs")
 
-public void ClickSearchJobs() {
+public void IClickSearchJobs() {
 	objcrossoverlandingpage.ClickSearchJobs();
  
 	}
 
-@RobotKeyword("Verify the results")
+@RobotKeyword("I should see the results with searched text")
 @ArgumentNames({"SEARCHTEXT"})
 
-public void Verifytheresults(String SEARCHTEXT) {
+public void Ishouldseetheresultswithsearchedtext(String SEARCHTEXT) {
 	try {
 		objcrossoverlandingpage.Verifytheresults(SEARCHTEXT);
 	} catch (Exception e) {
@@ -94,30 +97,43 @@ public void Verifytheresults(String SEARCHTEXT) {
  
 	}
 
-@RobotKeyword("Reset the filter")
+@RobotKeyword("I Reset the filter")
 
-public void Resetthefilter() {
+public void IResetthefilter() {
 	objcrossoverlandingpage.ClickReset();
  
 	}
 
-@RobotKeyword("Select Java from Job Categories")
+@RobotKeyword("I Select Java from Job Categories")
 
-public void SelectJavafromJobCategories() {
+public void ISelectJavafromJobCategories() {
 	objcrossoverlandingpage.SelectJavafromJobCategories();
  
 	}
 
-@RobotKeyword("Navigate to Home Page")
-public void NavigateToHomePage() {
+@RobotKeyword("I Navigate to Home Page")
+public void INavigateToHomePage() {
 	objcrossoverlandingpage.NavigateToHomePage();
  
 	}
 
-@RobotKeyword("Close the Browser")
-public void CloseTheBrowser() {
-	objcrossoverlandingpage.CloseTheBrowser();
+
+@RobotKeyword("I should be home page")
+public void Ishouldbehomepage() {
+	objcrossoverlandingpage.assertHomePage();
  
 	}
+
+@RobotKeyword("Tear Down")
+public void tearDown() {
+	driver.quit();
+}
+
+@RobotKeyword("I am at Search results screen with Java selection")
+public void IamatSearchresultsscreenwithJavaselection() {
+	objcrossoverlandingpage.resultsScreeninvoke();
+ 
+	}
+
 
 }
