@@ -31,9 +31,9 @@ public class KeywordImplementations {
 	}
 	
 	
-	@RobotKeyword("Launch Crossover Website is launched")
+	@RobotKeyword("Crossover Website is launched")
     @ArgumentNames({"URL", "Browser"})
-	public void LaunchCrossoverWebsiteislaunched(String url, String Browser) {
+	public void CrossoverWebsiteislaunched(String url, String Browser) {
 		driver.get(url);	
 		Assert.assertTrue(driver.getCurrentUrl().contains(url));		
 	}
