@@ -1,5 +1,12 @@
 *** Settings ***
-Documentation  A resource file containing the application specific keywords
+Documentation  User Story: 
+...    
+...     As a user of Crossover
+...    
+...     I should be able to search for jobs by free text
+...    
+...     I  should be able to search jobs by selection of the predefined options from the drop down
+...    
 Library  Selenium2Library
 Library  com.crossover.robotframework.JavaRobot.SampleKeywords
 Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
@@ -8,19 +15,20 @@ Test SetUp       Setup
 Test Teardown    Tear Down
 
 *** Variables ***
+
 ${URL} =  https://www.crossover.com
 ${BROWSER}=  chrome
 ${SEARCHTEXT}=  chief
 ${CATEGORY}=  java
-
+${CATEGORY2}=  PHP
 
 
 
 *** Test Cases ***
 
-Verify the Results for Free Text Search
+Feature: Verify the Results for Free Text Search
 
-	Given Launch Crossover Website is launched  ${URL}  ${BROWSER}
+	Given Crossover Website is launched  ${URL}  ${BROWSER}
 	When I Maximize Browser
     And I Navigate to For Candidates
 	And I Navigate to Available Jobs
@@ -37,14 +45,16 @@ Verify the Results for Selected Value from Drop Down
 	And I Navigate to Available Jobs
 	And I Select Java from Job Categories
 	Then I should see the results with searched text  ${CATEGORY}
-    
-
+	
+	
 Verify the Navigation to Home Page from Results Page
     
     Given I am at Search results screen with Java selection
     When I Reset the filter
     And I Navigate to Home Page
     Then I should be home page
+    
+ 
     
 
     
