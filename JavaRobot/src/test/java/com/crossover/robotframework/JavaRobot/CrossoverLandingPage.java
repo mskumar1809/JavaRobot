@@ -69,6 +69,7 @@ public class CrossoverLandingPage {
 	public void EnterChiefInJobTitle(String SEARCHTEXT) {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(JobTitle).sendKeys(SEARCHTEXT);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	@Test
