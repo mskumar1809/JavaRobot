@@ -37,7 +37,7 @@ Feature: Verify the Results for Free Text Search
 	And I Click Search Jobs
     Then I should see the results with searched text  ${SEARCHTEXT}
  
-Verify the Results for Selected Value from Drop Down
+Feature: Verify the Results for Selected Value from Drop Down
     
     Given Crossover Website is launched  ${URL}  ${BROWSER}
 	When I Maximize Browser
@@ -47,12 +47,7 @@ Verify the Results for Selected Value from Drop Down
 	Then I should see the results with searched text  ${CATEGORY}
 	
 	
-Verify the Navigation to Home Page from Results Page
-    
-    Given I am at Search results screen with Java selection
-    When I Reset the filter
-    And I Navigate to Home Page
-    Then I should be home page
+
     
  
     
