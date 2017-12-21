@@ -99,7 +99,7 @@ public class CrossoverLandingPage {
 		       if (row.getText() != null && row.getText().toString().length() > 0) {
 		    	   String rowText = row.getText().toString();
 		    	   System.out.println(row.getText().toString());
-		    	   //Assert.assertTrue(rowText.toLowerCase().contains(SEARCHTEXT));
+		    	   Assert.assertTrue(rowText.toLowerCase().contains(SEARCHTEXT));
 		       }
 		}
 	}

@@ -1,14 +1,5 @@
 *** Settings ***
-Documentation  User Story: 
-...    
-...     As a user of Crossover
-...    
-...     I should be able to search for jobs by free text
-...    
-...     I  should be able to search jobs by selection of the predefined options from the drop down
-...    
 Library  Selenium2Library
-Library  com.crossover.robotframework.JavaRobot.SampleKeywords
 Library  com.crossover.robotframework.JavaRobot.KeywordImplementations
 
 Test SetUp       Setup
@@ -22,9 +13,15 @@ ${SEARCHTEXT}=  chief
 ${CATEGORY}=  java
 ${CATEGORY2}=  PHP
 
-
-
 *** Test Cases ***
+Documentation  User Story: 
+...    
+...     As a user of Crossover
+...    
+...     I should be able to search for jobs by free text
+...    
+...     I  should be able to search jobs by selection of the predefined options from the drop down
+...    
 
 Feature: Verify the Results for Free Text Search
 
